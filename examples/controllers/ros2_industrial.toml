@@ -1,0 +1,20 @@
+# Documentation-only profile; the current ROS 2 plugin is mock-only.
+[driver]
+type = "ros2_control"
+mode = "mock"
+enabled = false
+arm_id = "arm_05"
+transport = "ethernet"
+ros2_distribution = "CHANGE_ME"
+hardware_plugin = "forgearm_ros2_hardware/ForgeArmSystem"
+controller_manager_namespace = "/arm_05"
+joint_names = ["joint_1", "joint_2", "joint_3"]
+
+[safety]
+require_feedback = true
+max_position_step_rad = 0.05
+require_operator_enable = true
+require_hardware_estop = true
+
+# The repository scaffold deliberately rejects mock_mode=false. Replace it
+# only with a tested vendor driver and a validated ros2_control configuration.
