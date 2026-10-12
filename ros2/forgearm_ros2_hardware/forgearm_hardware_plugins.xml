@@ -1,0 +1,7 @@
+<library path="forgearm_ros2_hardware">
+  <class name="forgearm_ros2_hardware/ForgeArmSystem"
+         type="forgearm_ros2_hardware::ForgeArmSystem"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>Fail-closed ros2_control scaffold. Supports mock_mode only; physical hardware transport must be implemented and validated before use.</description>
+  </class>
+</library>
