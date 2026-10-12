@@ -1,0 +1,23 @@
+# Configuration example only; no CAN frames are sent.
+[driver]
+type = "can_drive"
+mode = "mock"
+enabled = false
+arm_id = "arm_03"
+transport = "can"
+interface = "CHANGE_ME"
+bitrate = 500000
+protocol = "CHANGE_ME"
+joint_names = ["joint_1", "joint_2", "joint_3"]
+device_ids = [1, 2, 3]
+position_unit = "radians"
+
+[safety]
+require_feedback = true
+max_position_step_rad = 0.05
+require_operator_enable = true
+require_hardware_estop = true
+communication_timeout_ms = 100
+
+# Specify CANopen/CiA 402 or the actual vendor protocol, node IDs, scaling,
+# state transitions, heartbeat, fault reset policy, and certified stop behavior.
