@@ -1,8 +1,13 @@
 # Testing Strategy
 
-CTest runs separate executables for kinematics, trajectory generation, workspace checks, and collision geometry.
+CTest runs focused executables for kinematics, trajectory generation, workspace checks, collision geometry, and simulator state transitions.
 
-Coverage includes FK/IK round-trip, unreachable and non-finite targets, invalid link lengths, trajectory endpoints and velocity bounds, workspace envelopes, segment intersection, circle clearance, and arm-obstacle contact.
+Coverage includes:
+- FK/IK round-trip, unreachable and non-finite targets, invalid link lengths.
+- Trajectory start/end conditions, reverse movement, and sampled velocity bounds.
+- Workspace radial envelope, bounding-box behavior, and pose-specific IK.
+- Segment intersection, circle clearance, and arm-obstacle contact.
+- Simulator move/step completion, joint-state updates, reset, and collision fault state.
 
 Run:
 ```sh
