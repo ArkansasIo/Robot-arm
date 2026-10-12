@@ -25,7 +25,7 @@ add_executable(forgearm_demo src/main.cpp)
 target_link_libraries(forgearm_demo PRIVATE forgearm)
 
 enable_testing()
-foreach(test_name IN ITEMS kinematics trajectory workspace collision)
+foreach(test_name IN ITEMS kinematics trajectory workspace collision simulator)
     add_executable(forgearm_test_${test_name} tests/test_${test_name}.cpp)
     target_link_libraries(forgearm_test_${test_name} PRIVATE forgearm)
     add_test(NAME ${test_name} COMMAND forgearm_test_${test_name})
