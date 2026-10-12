@@ -8,7 +8,7 @@ DriverResult MockDriver::connect(const DriverConfig& c){
  std::scoped_lock lock(mutex_);
  if(c.arm_id.empty()||c.joint_names.empty())return {false,"arm_id and joint_names are required."};
  if(!std::isfinite(c.max_position_step_rad)||c.max_position_step_rad<=0.0)return {false,"max_position_step_rad must be positive."};
- config_=c;joints_.assign(c.joint_names.size(),JointTelemetry{});status_=DriverStatus::ready;return {true,"Mock driver connected; no physical hardware accessed."};
+ config_=c;joints_.assign(c.joint_names.size(),JointTelemetry{});for(auto& joint:joints_)joint.valid=true;status_=DriverStatus::ready;return {true,"Mock driver connected; no physical hardware accessed."};
 }
 DriverResult MockDriver::enable(){std::scoped_lock lock(mutex_);if(status_!=DriverStatus::ready)return {false,"Driver must be connected before enable."};status_=DriverStatus::enabled;return {true,"Mock driver enabled."};}
 DriverResult MockDriver::read(std::vector<JointTelemetry>& out){std::scoped_lock lock(mutex_);if(status_==DriverStatus::disconnected)return {false,"Driver is disconnected."};out=joints_;return {true,"Mock telemetry returned."};}
