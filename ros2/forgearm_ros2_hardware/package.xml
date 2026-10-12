@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>forgearm_ros2_hardware</name>
+  <version>0.1.0</version>
+  <description>ROS 2 ros2_control hardware-plugin scaffold for ForgeArm. Mock-only by default; physical transport is intentionally not implemented.</description>
+  <maintainer email="maintainers@example.invalid">ForgeArm Maintainers</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
