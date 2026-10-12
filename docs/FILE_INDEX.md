@@ -1,23 +1,33 @@
 # File Index
 
-- `include/forgearm/types.hpp`: poses, joints, limits, and arm configuration.
-- `include/forgearm/math.hpp`: 2D vector and distance utilities.
-- `include/forgearm/kinematics.hpp`: kinematics API.
-- `include/forgearm/trajectory.hpp`: scalar motion profile API.
-- `include/forgearm/workspace.hpp`: workspace envelope and target reachability.
-- `include/forgearm/collision.hpp`: 2D collision primitives and arm link geometry.
-- `include/forgearm/simulator.hpp`: simulation state and stepping API.
-- `src/kinematics.cpp`: forward/inverse kinematics.
-- `src/trajectory.cpp`: trapezoidal profile.
-- `src/workspace.cpp`: workspace calculations.
-- `src/collision.cpp`: segment/circle geometry.
-- `src/simulator.cpp`: state transitions and trajectory stepping.
-- `src/main.cpp`: CLI demo.
-- `tests/test_kinematics.cpp`: kinematics regression tests.
-- `tests/test_trajectory.cpp`: motion profile tests.
-- `tests/test_workspace.cpp`: workspace tests.
-- `tests/test_collision.cpp`: geometry tests.
-- `tests/test_simulator.cpp`: simulator state and fault tests.
-- `examples/arm_config.toml`: illustrative settings; not parsed yet.
-- `docs/`: design, research, safety, API, build, testing, roadmap, contribution guide, and this index.
-- `.github/workflows/ci.yml`: continuous integration build/test workflow.
+## Core
+- `include/forgearm/types.hpp`: poses, joints, limits, arm config.
+- `include/forgearm/math.hpp`: 2D vector utilities.
+- `include/forgearm/kinematics.hpp`, `src/kinematics.cpp`: FK/IK.
+- `include/forgearm/trajectory.hpp`, `src/trajectory.cpp`: scalar trapezoidal profiles.
+- `include/forgearm/workspace.hpp`, `src/workspace.cpp`: workspace bounds and IK queries.
+- `include/forgearm/collision.hpp`, `src/collision.cpp`: 2D collision geometry.
+- `include/forgearm/simulator.hpp`, `src/simulator.cpp`: simulation state and stepping.
+
+## Hardware and multiple arms
+- `include/forgearm/hardware/driver.hpp`: vendor-driver interface contract.
+- `include/forgearm/hardware/safety_gate.hpp`, `src/hardware/safety_gate.cpp`: application-level command checks.
+- `include/forgearm/hardware/mock_driver.hpp`, `src/hardware/mock_driver.cpp`: no-hardware test driver.
+- `include/forgearm/hardware/arm_group.hpp`, `src/hardware/arm_group.cpp`: arm registry and up-to-eight-arm coordination shell.
+- `tests/test_hardware.cpp`: mock driver and command-gate regression test.
+- `examples/arms/arm_01.toml` through `arm_08.toml`: separate example profiles; not yet parsed by the app.
+- `ros2/forgearm_ros2_hardware/`: separate ROS 2 plugin scaffold; mock-only until a vendor transport is implemented.
+
+## Tests
+- `tests/test_kinematics.cpp`
+- `tests/test_trajectory.cpp`
+- `tests/test_workspace.cpp`
+- `tests/test_collision.cpp`
+- `tests/test_simulator.cpp`
+- `tests/test_hardware.cpp`
+
+## Documentation and automation
+- `docs/DESIGN.md`, `docs/RESEARCH.md`, `docs/SAFETY.md`
+- `docs/HARDWARE.md`, `docs/DRIVER_PLUGIN_CONTRACT.md`, `docs/MULTI_ARM.md`
+- `docs/API.md`, `docs/BUILD.md`, `docs/TESTING.md`, `docs/ROADMAP.md`, `docs/CONTRIBUTING.md`, `docs/FILE_INDEX.md`
+- `.github/workflows/ci.yml`: portable core CI.
