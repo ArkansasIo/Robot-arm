@@ -13,6 +13,11 @@
 - `src/collision.cpp`: segment/circle geometry.
 - `src/simulator.cpp`: state transitions and trajectory stepping.
 - `src/main.cpp`: CLI demo.
-- `tests/`: regression tests.
+- `tests/test_kinematics.cpp`: kinematics regression tests.
+- `tests/test_trajectory.cpp`: motion profile tests.
+- `tests/test_workspace.cpp`: workspace tests.
+- `tests/test_collision.cpp`: geometry tests.
+- `tests/test_simulator.cpp`: simulator state and fault tests.
 - `examples/arm_config.toml`: illustrative settings; not parsed yet.
-- `docs/`: design, research, safety, API, build, testing, roadmap, and contribution documents.
+- `docs/`: design, research, safety, API, build, testing, roadmap, contribution guide, and this index.
+- `.github/workflows/ci.yml`: continuous integration build/test workflow.
