@@ -11,7 +11,7 @@ int main(){using namespace forgearm;using namespace forgearm::hardware;
  if(!group.enable_all().ok)return 3;
  if(!group.command("arm_01",{0.1,-0.1}).ok)return 4;
  if(group.command("arm_01",{0.8,0.0}).ok)return 5;
- if(group.command("arm_01",{0.0,0.0}).ok)return 6;
+ if(!group.command("arm_01",{0.0,0.0}).ok)return 6;
  if(group.command("unknown",{0.0,0.0}).ok)return 7;
  if(!group.stop_all().ok)return 8;
  if(!group.disconnect_all().ok)return 9;
