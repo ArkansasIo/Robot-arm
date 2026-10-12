@@ -1,0 +1,19 @@
+# Example only: arbitrary units, not a fabrication specification.
+[arm]
+name = "ForgeArm-Planar-3R"
+link_1 = 1.0
+link_2 = 0.8
+link_3 = 0.3
+[joint_1]
+minimum_degrees = -170.0
+maximum_degrees = 170.0
+[joint_2]
+minimum_degrees = -150.0
+maximum_degrees = 150.0
+[joint_3]
+minimum_degrees = -170.0
+maximum_degrees = 170.0
+[motion_defaults]
+max_velocity_radians_per_second = 1.0
+max_acceleration_radians_per_second_squared = 1.0
+# Documentation example only; no TOML parser is currently included.
