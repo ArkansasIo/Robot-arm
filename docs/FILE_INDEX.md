@@ -15,7 +15,10 @@
 - `include/forgearm/hardware/mock_driver.hpp`, `src/hardware/mock_driver.cpp`: no-hardware test driver.
 - `include/forgearm/hardware/arm_group.hpp`, `src/hardware/arm_group.cpp`: arm registry and up-to-eight-arm coordination shell.
 - `tests/test_hardware.cpp`: mock driver and command-gate regression test.
-- `examples/arms/arm_01.toml` through `arm_08.toml`: separate example profiles; not yet parsed by the app.
+- `examples/arms/arm_01.toml` through `arm_08.toml`: separate arm profiles; not yet parsed by the app.
+- `examples/controllers/`: disabled configuration examples for Dynamixel, GRBL/stepper, CAN, MCU bridge, and ROS 2.
+- `drivers/README.md`: multi-controller integration matrix and adapter requirements.
+- `drivers/IMPLEMENTATION_STATUS.md`: implemented scaffolding versus work remaining.
 - `ros2/forgearm_ros2_hardware/`: separate ROS 2 plugin scaffold; mock-only until a vendor transport is implemented.
 
 ## Tests
@@ -29,5 +32,6 @@
 ## Documentation and automation
 - `docs/DESIGN.md`, `docs/RESEARCH.md`, `docs/SAFETY.md`
 - `docs/HARDWARE.md`, `docs/DRIVER_PLUGIN_CONTRACT.md`, `docs/MULTI_ARM.md`
+- `docs/CONTROLLER_CONFIGURATION.md`: controller families, config status, and safety boundary.
 - `docs/API.md`, `docs/BUILD.md`, `docs/TESTING.md`, `docs/ROADMAP.md`, `docs/CONTRIBUTING.md`, `docs/FILE_INDEX.md`
 - `.github/workflows/ci.yml`: portable core CI.
