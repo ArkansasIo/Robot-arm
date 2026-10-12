@@ -1,18 +1,20 @@
 # ForgeArm — C++23 Robot Arm Simulator
 
-ForgeArm is a dependency-free C++23 project for a **simulated 3-DOF planar robot arm**. Version 0.2 adds scalar motion profiles, workspace analysis, 2D obstacle geometry, simulation state management, five regression suites, and GitHub Actions CI.
+ForgeArm is a modular C++23 project for simulating a planar 3-DOF robot arm and developing hardware adapters. The portable core includes kinematics, scalar motion profiles, workspace estimates, collision primitives, simulation state, a driver abstraction, software command checks, and an eight-arm group coordinator.
 
-> **Safety boundary:** this project is a simulator. It does not drive motors, provide real-time control, or implement safety-rated functions. Do not connect it directly to physical hardware.
+> **Physical hardware warning:** the included drivers are mocks. The ROS 2 plugin scaffold refuses activation unless explicitly configured for mock mode. No vendor-specific real motor driver or safety-rated control function is included.
 
 ## Features
-- Forward and inverse kinematics with joint-limit validation
-- Trapezoidal scalar trajectory generation with velocity/acceleration limits
-- Coarse radial workspace envelope and pose-specific IK check
-- 2D segment/circle collision primitives and approximate arm-link collision checks
-- Simulation state, joint-space trajectory stepping, stop/reset, and simulated fault state
-- CMake C++23 build, five CTest suites, CI workflow, engineering and API documentation
+- Forward/inverse kinematics and joint-limit validation
+- Trapezoidal scalar motion profile
+- Workspace estimates and 2D segment/circle collision geometry
+- Simulator with joint-space stepping, reset, stop, and simulated faults
+- `IHardwareDriver` abstraction, mock driver, command gate, and multi-arm coordinator
+- Eight separate example arm profiles under `examples/arms/`
+- ROS 2 `ros2_control` plugin scaffold under `ros2/forgearm_ros2_hardware/`
+- Six CTest suites and GitHub Actions CI
 
-## Build
+## Build portable core
 Requirements: CMake 3.20+ and a C++23-capable compiler.
 
 ```bash
@@ -22,27 +24,21 @@ ctest --test-dir build --output-on-failure
 ./build/forgearm_demo
 ```
 
-On Windows with Visual Studio:
-```powershell
-cmake -S . -B build
-cmake --build build --config Release
-ctest --test-dir build -C Release --output-on-failure
-.\build\Release\forgearm_demo.exe
-```
+## Hardware abstraction and ROS 2
+Read [docs/HARDWARE.md](docs/HARDWARE.md), [docs/DRIVER_PLUGIN_CONTRACT.md](docs/DRIVER_PLUGIN_CONTRACT.md), and [docs/MULTI_ARM.md](docs/MULTI_ARM.md). The ROS 2 package has a separate build and dependency requirements; see [its README](ros2/forgearm_ros2_hardware/README.md).
+
+A real device adapter cannot be completed responsibly without the exact arm/controller model, vendor SDK or protocol, encoder conventions, electrical interfaces, and safety architecture. Do not set a mock flag to operate real hardware. The software command gate is not a safety-rated function.
 
 ## Repository layout
-- `include/forgearm/`: public types, math, kinematics, trajectories, workspace, collision, simulator APIs
-- `src/`: implementations and command-line demo
-- `tests/`: regression tests for kinematics, trajectories, workspace, collision, and simulator state
-- `examples/arm_config.toml`: illustrative configuration values; currently documentation only, no parser
-- `docs/`: design, research, safety, API, build, testing, roadmap, contribution guide, file index
-- `.github/workflows/ci.yml`: automated build and test workflow
+- `include/forgearm/`: types, math, kinematics, trajectories, workspace, collision, simulator, hardware interfaces
+- `src/`: portable implementation
+- `tests/`: regression suites
+- `examples/arms/`: eight independent sample profiles (mock-only)
+- `ros2/forgearm_ros2_hardware/`: ROS 2 plugin scaffold, mock mode only
+- `docs/`: design, research, hardware, multi-arm, API, testing, and safety documents
 
-## Modeling limitations
-The arm model is planar and uses three rotary joints. Default link lengths are 1.0, 0.8, and 0.3 arbitrary units. The radial workspace envelope is coarse; joint limits and tool orientation can further restrict reachability. Collision checking approximates links as line segments with circular clearance and does not include self-collision, swept-volume checking, dynamic obstacles, or uncertainty. The simulator's collision state is not a safety-rated monitor.
-
-## Research and roadmap
-See [docs/RESEARCH.md](docs/RESEARCH.md) and [docs/ROADMAP.md](docs/ROADMAP.md). Research topics include inverse kinematics, trajectory generation, motion planning, and robotics safety.
+## Research
+See [docs/RESEARCH.md](docs/RESEARCH.md) and ROS 2's [hardware interface documentation](https://control.ros.org/jazzy/doc/getting_started/getting_started.html).
 
 ## License
 MIT. See [LICENSE](LICENSE).
