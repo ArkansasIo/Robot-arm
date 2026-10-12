@@ -1,0 +1,28 @@
+# Configuration example only; no MCU connection is opened.
+[driver]
+type = "mcu_bridge"
+mode = "mock"
+enabled = false
+arm_id = "arm_04"
+transport = "usb_serial"
+port = "CHANGE_ME"
+baud_rate = 115200
+protocol_version = "CHANGE_ME"
+joint_names = ["joint_1", "joint_2", "joint_3"]
+position_unit = "radians"
+
+[protocol]
+framing = "length_prefixed"
+checksum = "required"
+sequence_numbers = true
+heartbeat_ms = 50
+timeout_ms = 100
+
+[safety]
+require_feedback = true
+max_position_step_rad = 0.05
+require_operator_enable = true
+require_hardware_estop = true
+
+# Define a versioned wire protocol and implement/validate the MCU firmware
+# separately. GPIO pins must not directly drive motors without proper drivers.
