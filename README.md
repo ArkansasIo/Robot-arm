@@ -1,6 +1,6 @@
 # ForgeArm — C++23 Robot Arm Simulator
 
-ForgeArm is a modular C++23 project for simulating a planar 3-DOF robot arm and developing hardware adapters. The portable core includes kinematics, scalar motion profiles, workspace estimates, collision primitives, simulation state, a driver abstraction, software command checks, and an eight-arm group coordinator.
+Project site: [ForgeArm on GitHub Pages](https://arkansasio.github.io/Robot-arm/).\n\nForgeArm is a modular C++23 project for simulating a planar 3-DOF robot arm and developing hardware adapters. The portable core includes kinematics, scalar motion profiles, workspace estimates, collision primitives, simulation state, a driver abstraction, software command checks, and an eight-arm group coordinator.
 
 > **Physical hardware warning:** the included drivers are mocks. The ROS 2 plugin scaffold refuses activation unless configured for mock mode. No vendor-specific real motor driver or safety-rated control function is included.
 
