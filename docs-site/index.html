@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ForgeArm is a modular C++23 robot-arm simulation and hardware-adapter project.">
+  <meta name="theme-color" content="#0b1220">
+  <title>ForgeArm — Robot Arm Framework</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="ForgeArm home"><span class="brand-mark">FA</span> ForgeArm</a>
+    <nav aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#controllers">Controllers</a>
+      <a href="#build">Build</a>
+      <a href="https://github.com/ArkansasIo/Robot-arm">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">C++23 · ROBOTICS SOFTWARE · OPEN SOURCE</p>
+      <h1>Plan. Simulate.<br><span>Integrate responsibly.</span></h1>
+      <p class="lead">A modular foundation for planar robot-arm kinematics, trajectory planning, collision checks, simulation, and pluggable hardware integrations.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/ArkansasIo/Robot-arm">View source code <span aria-hidden="true">↗</span></a>
+        <a class="button secondary" href="#build">Build the project</a>
+      </div>
+      <div class="hero-note"><span class="pulse"></span> Portable C++ core · CMake · Automated tests</div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">CORE CAPABILITIES</p>
+        <h2>One framework. Clear boundaries.</h2>
+        <p>Keep planning and simulation independent from transport-specific hardware code.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="icon">⌁</div><h3>Kinematics</h3><p>Forward and inverse kinematics with joint-limit validation for a planar 3-DOF arm.</p></article>
+        <article class="card"><div class="icon">◷</div><h3>Motion planning</h3><p>Scalar trapezoidal motion profiles and joint-space simulation stepping.</p></article>
+        <article class="card"><div class="icon">◇</div><h3>Workspace & collision</h3><p>Workspace estimates and 2D segment/circle collision primitives.</p></article>
+        <article class="card"><div class="icon">⇄</div><h3>Hardware abstraction</h3><p>A common driver interface, mock driver, command gate, and multi-arm coordinator.</p></article>
+        <article class="card"><div class="icon">▦</div><h3>Eight arm profiles</h3><p>Independent sample profiles to document IDs, joints, and limits.</p></article>
+        <article class="card"><div class="icon">✓</div><h3>Testable core</h3><p>CMake/CTest regression suites and GitHub Actions CI for the portable core.</p></article>
+      </div>
+    </section>
+
+    <section id="controllers" class="section controllers">
+      <div class="section-heading">
+        <p class="eyebrow">INTEGRATION ROADMAP</p>
+        <h2>Controller families</h2>
+        <p>Configuration examples document intended integration points. They are not proof of working physical-device support.</p>
+      </div>
+      <div class="controller-list">
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/examples/controllers/dynamixel.toml"><span><b>Dynamixel servos</b><small>USB serial · vendor SDK/protocol required</small></span><span class="status">Scaffold</span></a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/examples/controllers/grbl.toml"><span><b>GRBL / stepper</b><small>Serial · verify firmware and arm suitability</small></span><span class="status">Scaffold</span></a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/examples/controllers/can_drive.toml"><span><b>CAN / CAN-FD drives</b><small>Bus transport · exact drive protocol required</small></span><span class="status">Scaffold</span></a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/examples/controllers/mcu_bridge.toml"><span><b>MCU bridge</b><small>Arduino / ESP32 / Raspberry Pi bridge protocol</small></span><span class="status">Scaffold</span></a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/tree/main/ros2/forgearm_ros2_hardware"><span><b>ROS 2 / industrial robots</b><small>ros2_control integration package</small></span><span class="status">Mock only</span></a>
+      </div>
+      <aside class="warning"><strong>Hardware safety notice</strong><p>All controller examples default to disabled mock mode. No real vendor-specific motor driver is included. Software checks are not safety-rated and cannot replace a physical emergency stop, guarding, interlocks, or a system risk assessment.</p></aside>
+    </section>
+
+    <section id="build" class="section build-section">
+      <div class="section-heading">
+        <p class="eyebrow">GET STARTED</p>
+        <h2>Build the portable core</h2>
+        <p>Requirements: CMake 3.20+ and a C++23-capable compiler.</p>
+      </div>
+      <div class="code-panel">
+        <div class="code-header"><span>Terminal</span><button id="copy-command" type="button">Copy commands</button></div>
+        <pre><code id="build-commands">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+./build/forgearm_demo</code></pre>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+      <div class="resource-links">
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/docs/HARDWARE.md">Hardware guide ↗</a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/docs/CONTROLLER_CONFIGURATION.md">Controller configuration ↗</a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/blob/main/drivers/IMPLEMENTATION_STATUS.md">Implementation status ↗</a>
+        <a href="https://github.com/ArkansasIo/Robot-arm/actions">Build & test runs ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="./"><span class="brand-mark">FA</span> ForgeArm</a><p>Robotics software foundation · Validate integrations before use on physical equipment.</p><a href="https://github.com/ArkansasIo/Robot-arm">Source repository ↗</a></footer>
+  <script>
+    const copyButton = document.getElementById('copy-command');
+    const commandBlock = document.getElementById('build-commands');
+    const copyStatus = document.getElementById('copy-status');
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(commandBlock.textContent);
+        copyStatus.textContent = 'Commands copied.';
+      } catch {
+        copyStatus.textContent = 'Clipboard access was unavailable. Select the commands and copy them manually.';
+      }
+    });
+  </script>
+</body>
+</html>
